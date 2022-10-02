@@ -1,0 +1,21 @@
+{
+  "name": "supertest-api-tests",
+  "version": "1.0.0",
+  "description": "API tests in Supertest",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require @babel/register"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.1",
+    "@babel/register": "^7.18.9",
+    "express": "^4.18.1",
+    "mocha": "^10.0.0",
+    "should": "^13.2.3",
+    "supertest": "^6.2.4",
+    "chai": "^4.3.6"
+  }
+}
