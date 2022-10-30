@@ -1,27 +1,57 @@
-import request from 'supertest';
+import { apiServer } from '../utils/constants';
 let { expect } = require('chai')
 
-const apiServer = request('http://localhost:4001')
+const wrongCredentialsMessage = 'Invalid username/password supplied'
 
 describe('POST /users', () => {
 
-    it('responds with json', (done) => {
-        apiServer
+    it('should successfully login', async () => {
+        const loginResponse = await apiServer
             .post('/users/signin')
             .send({
                 username: 'admin',
                 password: 'admin'
             })
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(200)
-            .end(function (err, res) {
-                if (err) {
-                    return done(err);
-                }
-                expect(res.body.firstName).to.be.equal('Slawomir');
-                return done();
-            });
+            
+        expect(loginResponse.status).to.eq(200)
+        expect(loginResponse.body.firstName).to.eq('Slawomir')
+    });
+
+    it('should fail to login if wrong password', async () => {
+        const loginResponse = await apiServer
+            .post('/users/signin')
+            .send({
+                username: 'admin',
+                password: 'wrongPassword'
+            })
+            
+        expect(loginResponse.status).to.eq(422)
+        expect(loginResponse.body.message).to.eq(wrongCredentialsMessage)
+    });
+
+    it('should fail to login if wrong user', async () => {
+        const loginResponse = await apiServer
+            .post('/users/signin')
+            .send({
+                username: 'wrong',
+                password: 'wrong'
+            })
+            
+        expect(loginResponse.status).to.eq(422)
+        expect(loginResponse.body.message).to.eq(wrongCredentialsMessage)
+    });
+
+    it('should return bad request with correct validation errors', async () => {
+        const loginResponse = await apiServer
+            .post('/users/signin')
+            .send({
+                username: '123',
+                password: '123'
+            })
+            
+        expect(loginResponse.status).to.eq(400)
+        expect(loginResponse.body.username).to.eq('Minimum username length: 4 characters')
+        expect(loginResponse.body.password).to.eq('Minimum password length: 4 characters')
     });
 
 });
