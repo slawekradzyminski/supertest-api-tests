@@ -3,7 +3,7 @@ let { expect } = require('chai')
 
 const wrongCredentialsMessage = 'Invalid username/password supplied'
 
-describe('POST /users', () => {
+describe('Login tests', () => {
 
     it('should successfully login', async () => {
         const loginResponse = await apiServer

@@ -1,0 +1,22 @@
+{
+    "include": [
+        "./**/*.ts"
+    ],
+    "exclude": [],
+    "compilerOptions": {
+        "types": [
+            "mocha"
+        ],
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "target": "es6",
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "moduleResolution": "node",
+    }
+}

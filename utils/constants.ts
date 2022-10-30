@@ -1,3 +1,3 @@
-import request from 'supertest';
+import * as request from 'supertest';
 
 export const apiServer = request('http://localhost:4001')
