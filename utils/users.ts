@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { Roles } from './roles';
 
-type User = {
+export type User = {
     firstName: string,
     lastName: string,
     username: string,

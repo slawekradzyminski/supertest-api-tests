@@ -1,6 +1,6 @@
 import { apiServer } from '../utils/constants';
 import { getRandomUser } from '../utils/users';
-let { expect } = require('chai')
+import { expect } from 'chai'
 
 describe('Register tests', () => {
 

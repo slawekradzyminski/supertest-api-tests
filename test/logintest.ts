@@ -1,5 +1,5 @@
 import { apiServer } from '../utils/constants';
-let { expect } = require('chai')
+import { expect } from 'chai'
 
 const wrongCredentialsMessage = 'Invalid username/password supplied'
 
