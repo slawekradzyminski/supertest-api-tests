@@ -1,7 +1,8 @@
 import { apiServer } from '../utils/constants';
-import { getRandomUser } from '../utils/users';
+import { getAdminUser } from '../utils/users';
 import { expect } from 'chai'
 import { loginUserAndGetToken } from '../helpers/loginHelper';
+import { faker } from '@faker-js/faker';
 
 describe('PUT /users/{}', () => {
 
@@ -13,20 +14,21 @@ describe('PUT /users/{}', () => {
     it('should successfully edit user', async () => {
         // given
         // 1
-        const user = getRandomUser()
+        const user = getAdminUser()
         await apiServer.post('/users/signup').send(user)
 
         // 2
         const token = await loginUserAndGetToken(user.username, user.password)
+        const newFirstName = faker.name.firstName()
 
         // when 3
         const editUserRequest = await apiServer
             .put(`/users/${user.username}`)
             .set('Authorization', `Bearer ${token}`)
             .send({
-                firstName: 'Slawek',
-                lastName: 'Radzyminski',
-                email: 'slawek@slawek.com',
+                firstName: newFirstName,
+                lastName: faker.name.lastName(),
+                email: faker.internet.email(),
                 roles: user.roles,
                 username: user.username
             })
@@ -38,7 +40,7 @@ describe('PUT /users/{}', () => {
             .set('Authorization', `Bearer ${token}`)
 
         expect(getSingleUserRequest.status).to.eq(200)
-        expect(getSingleUserRequest.body.firstName).to.eq('Slawek')
+        expect(getSingleUserRequest.body.firstName).to.eq(newFirstName)
     });
 
 });

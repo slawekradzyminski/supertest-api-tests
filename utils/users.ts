@@ -15,13 +15,21 @@ export type User = {
     email: string
 }
 
-export const getRandomUser = (): User => {
+export const getAdminUser = (): User => {
     return {
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         username: faker.internet.userName(),
         password: faker.internet.password(),
-        roles: [ Roles.ROLE_ADMIN, Roles.ROLE_CLIENT ],
+        roles: [ Roles.ROLE_ADMIN ],
         email: faker.internet.email()
+    }
+}
+
+export const getClientUser = (): User => {
+    const admin = getAdminUser()
+    return {
+        ...admin,
+        roles: [Roles.ROLE_CLIENT]
     }
 }

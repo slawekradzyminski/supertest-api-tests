@@ -1,5 +1,5 @@
 import { apiServer } from '../utils/constants';
-import { getRandomUser } from '../utils/users';
+import { getAdminUser } from '../utils/users';
 import { expect } from 'chai'
 import { loginUserAndGetToken } from '../helpers/loginHelper';
 
@@ -9,10 +9,10 @@ describe('DELETE /users/', () => {
     // 2. zalogować się jako uzytkownik który ma uprawnienia do usuwania
     // 3. usunięcie uzytkownika
 
-    it('should successfully delete user', async () => {
+    it('admin should successfully delete user', async () => {
         // given
         // 1
-        const user = getRandomUser()
+        const user = getAdminUser()
         await apiServer.post('/users/signup').send(user)
 
         // 2
@@ -37,7 +37,7 @@ describe('DELETE /users/', () => {
         expect(getSingleUserRequest.status).to.eq(404)
     });
 
-    it("should return 404 if user doesn't exist", async () => {
+    it("admin request should return 404 if user doesn't exist", async () => {
         // given
         const token = await loginUserAndGetToken('admin', 'admin')
 
