@@ -1,6 +1,11 @@
 import { faker } from '@faker-js/faker';
 import { Roles } from './roles';
 
+export type LoginRequest = {
+    username: string,
+    password: string
+}
+
 export type User = {
     firstName: string,
     lastName: string,

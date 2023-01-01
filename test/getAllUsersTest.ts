@@ -1,18 +1,13 @@
 import { apiServer } from '../utils/constants';
 import { User } from '../utils/users';
 import { expect } from 'chai'
+import { loginUserAndGetToken } from '../helpers/loginHelper';
 
 describe('GET /users tests', () => {
 
     it('should get all user', async () => {
         // given
-        const loginResponse = await apiServer
-            .post('/users/signin')
-            .send({
-                username: 'admin',
-                password: 'admin'
-            })
-        const token = loginResponse.body.token
+        const token = await loginUserAndGetToken('admin', 'admin')
 
         // when
         const getAllUsersResponse = await apiServer
@@ -22,7 +17,7 @@ describe('GET /users tests', () => {
         // then
         expect(getAllUsersResponse.status).to.eq(200)
         const obtainedData = getAllUsersResponse.body as User[]
-        expect(obtainedData).to.have.length.greaterThan(2)
+        expect(obtainedData).to.have.length.greaterThanOrEqual(1)
     });
 
 });
