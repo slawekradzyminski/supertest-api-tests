@@ -3,10 +3,10 @@ name: Node.js 18 supertest workflow
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   e2eTest:
