@@ -13,8 +13,6 @@ on:
 jobs:
   e2eTest:
     runs-on: ubuntu-latest
-    container: 
-      image: cypress/browsers:node16.18.0-chrome107-ff106-edge
 
     steps:
     - name: Checkout code
