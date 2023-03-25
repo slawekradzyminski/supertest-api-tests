@@ -1,0 +1,25 @@
+name: Node.js CI
+
+
+on:
+ pull_request:
+   branches:
+     - master
+ schedule: 
+    cron: 0 2 * * 1-5
+
+
+jobs:
+ ci_test:
+   runs-on: ubuntu-latest
+   steps:
+   - name: Git clone
+     uses: actions/checkout@v3
+   - name: Setup Node.js 18
+     uses: actions/setup-node@v3
+     with:
+       node-version: 18
+   - name: Install dependencies
+     run: npm install
+   - name: Run unit tests
+     run: npm run e2eTest
