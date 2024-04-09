@@ -14,8 +14,8 @@ export const getAdminUser = (): User => {
     return {
         username: faker.internet.userName(),
         password: faker.internet.password(),
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
         email: faker.internet.email(),
         roles: [Roles.ROLE_ADMIN]
     }
