@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\": \\\"commonjs\\\" }\" mocha -r ts-node/register 'test/**/*.ts'",
-    "e2eTest": "cross-env TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\": \\\"commonjs\\\" }\" mocha -r ts-node/register 'test/jsonPlaceholderTest.ts'"  },
+    "e2eTest": "cross-env TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\": \\\"commonjs\\\" }\" mocha -r ts-node/register 'test/jsonPlaceholderTest.ts'",
+    "aiTest": "cross-env TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\": \\\"commonjs\\\" }\" mocha -r ts-node/register 'test/ai/**/*.ts'"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
