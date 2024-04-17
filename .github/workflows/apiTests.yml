@@ -1,0 +1,33 @@
+name: API Tests
+
+on: [push, pull_request]
+
+jobs:
+ test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Run Docker container
+      run: |
+        docker run -d --name backend -p 4001:4001 slawekradzyminski/backend:1.2
+
+    - name: Wait for Docker container to be ready
+      run: |
+        echo "Waiting for backend to be ready..."
+        until curl --output /dev/null --silent --head --fail http://localhost:4001; do
+          sleep 5
+        done
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Supertest tests
+      run: npm test
