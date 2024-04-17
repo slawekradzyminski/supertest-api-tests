@@ -4,9 +4,8 @@
   "description": "API tests in Supertest",
   "main": "index.js",
   "scripts": {
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'test/**/*.ts'",
-    "e2eTest": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'test/jsonPlaceholderTest.ts'"
-  },
+    "test": "cross-env TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\": \\\"commonjs\\\" }\" mocha -r ts-node/register 'test/**/*.ts'",
+    "e2eTest": "cross-env TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\": \\\"commonjs\\\" }\" mocha -r ts-node/register 'test/jsonPlaceholderTest.ts'"  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -18,6 +17,7 @@
     "@types/mocha": "^10.0.6",
     "@types/supertest": "^6.0.2",
     "chai": "^4.3.7",
+    "cross-env": "^7.0.3",
     "express": "^4.19.2",
     "mocha": "^10.4.0",
     "should": "^13.2.3",
